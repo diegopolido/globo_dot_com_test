@@ -1,0 +1,34 @@
+<%- model_class = Photo -%>
+<div class="page-header">
+  <h1>Fotos</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Arquivo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <td><%= link_to photo.id, photo_path(photo) %></td>
+        <td><%= image_tag(photo.file_url, width: 100, height: 64) unless photo.file.blank? %></td>
+        <td>
+          <%= link_to "Editar",
+                      edit_photo_path(photo), :class => 'btn btn-primary btn-xs' %>
+          <%= link_to "Deletar",
+                      photo_path(photo),
+                      :method => :delete,
+                      :data => { :confirm => "Tem certeza?" },
+                      :class => 'btn btn-danger btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Nova Foto",
+            new_photo_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,18 @@
+<% if @photos.any? %>
+  <div class="gallery-container">
+    <div class="float-left arrows"><%= link_to "<", "javascript:void(0)", id: "seta-esquerda", class: "seta btn btn-default" %></div>
+    <div id="gallery" class="float-left">
+      <% @photos.each_with_index do |photo, index| %>
+        <% photo_first = index == 0 ? "first" : "" %>
+        <% photo_last = index == @photos.size - 1 ? "last" : "" %>
+        <%= image_tag(photo.file_url, class: "photo #{photo_first} #{photo_last}", width: 700) unless photo.file.blank? %>
+      <% end %>
+    </div>
+    <div class="float-left arrows"><%= link_to ">", "javascript:void(0)", id: "seta-direita", class: "seta btn btn-primary" %></div>
+  </div>
+<% else %>
+  <div class="col-lg-8 col-md-7 col-sm-6">
+    <h1>Nenhuma Imagem cadastrada</h1>
+    <p class="lead"><%= link_to "Cadastrar uma imagem", new_photo_path, class: "btn btn-primary" %></p>
+  </div>
+<% end %>
