@@ -6,7 +6,7 @@
 
   <% unless @photo.file.blank? %>
     <div class="form-group">
-      <%= image_tag @photo.file_url(:gallery) %>
+      <%= image_tag @photo.file_url, width: 700 %>
     </div>
   <% end %>
 
